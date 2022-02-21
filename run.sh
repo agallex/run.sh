@@ -31,3 +31,11 @@ then
   rm -rf $dir $dir.tar.gz
 fi
 mkdir $dir
+
+mkdir $dir
+
+recurse
+
+tar -cf $4 $dir
+
+echo done
