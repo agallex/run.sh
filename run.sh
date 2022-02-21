@@ -1,4 +1,5 @@
 #!/usr/bin/bash
 
-cd $1
-mkdir $3
+path=$1
+extension=$2
+dir=$3
