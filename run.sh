@@ -4,10 +4,9 @@ path=$1
 extension=$2
 dir=$3
 
-cd $path 
+cd $path
 if [ -e $path/$dir ]
 then
-  rm -rf $dir
-else
-  mkdir $dir
+  rm -rf $dir $dir.tar.gz
 fi
+mkdir $dir
