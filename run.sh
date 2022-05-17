@@ -29,8 +29,6 @@ cd $path
 if [ -e $path/$dir ]
 then
   rm -rf $dir $dir.tar.gz
-fi
-mkdir $dir
 
 mkdir $dir
 
