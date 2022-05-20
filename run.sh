@@ -6,34 +6,45 @@ dir=$3
 
 recurse() {
   x=$(ls)
+  local file
   for file in $x
   do
-    if [ $file != $dir ]
+    if [ -d $file ]
     then
-      if [ -d $file ]
+      cd $file
+      recurse
+      if [ `ls -a -1 | wc -l` -eq 2 ] #checking empty directory
       then
-        cd $file
-        recurse
         cd ..
+        rm -rf $file
       else
-        if [[ $file == *.$extension ]]
-        then
-          cp $file $path/$dir
-        fi
+        cd ..
+      fi
+    else
+      if [[ $file != *.$extension ]]
+      then
+        rm -rf $file
       fi
     fi
   done
 }
 
 cd $path
-if [ -e $path/$dir ]
+cd ..
+if [ -e $dir ]
 then
   rm -rf $dir $dir.tar.gz
 fi
 
 mkdir $dir
 
+cp -r $path $dir
+
+cd $dir
+
 recurse
+
+cd ..
 
 tar -cf $4 $dir
 
